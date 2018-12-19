@@ -44,7 +44,7 @@ class MakeReceivedImg(object):
         led_len = int(led_len)
 
         # reshape led_len to two-d array from one-d array
-        led_condition = np.reshape(blinking_leds, (led_len, led_len))
+        # led_condition = np.reshape(blinking_leds, (led_len, led_len))
 
         return np.array(blinking_leds)
 
@@ -94,25 +94,14 @@ class MakeReceivedImg(object):
         Aplly filtering to LED arrays created in RandomLEDs
         """
 
-        channel, invchannel = self.GaussChannelAndInv()
+        channel, _ = self.GaussChannelAndInv()
         #pixel_values = np.zeros(self.numberOfLEDs)
 
         pixel_values = np.dot(channel, leds)
 
        # pixel_values = np.dot(invchannel, pixel_values)
 
-        return pixel_values
- 
-        """  
-        def InvGaussChannel(self):
-
-        #逆行列を施す
-
-
-        channel = self.GaussChannel()
-        inv_gauss_channel = np.linalg.inv(channel)
-        return inv_gauss_channel
-            """      
+        return pixel_values     
   
   
     def GetNoise(self):
@@ -163,7 +152,7 @@ class MakeReceivedImg(object):
         led_condition = np.empty((0))
         pixel_value = np.empty((0))
         
-        for iteration in range(loop):
+        for _ in range(loop):
             receivedimg, led_condi = self.ReceivedImg()
             pixel_value = np.hstack((pixel_value, receivedimg))
             

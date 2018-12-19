@@ -1,10 +1,10 @@
 import csv
 
-import modulation_method as md
+import demodulation_method as md
 import channel_estimation as chest
 from data_creation import MakeReceivedImg
 
-_loop = 100
+_loop = 1
 _gaussSigma = 0.336
 _kernelSize = 9
 _maxLum = 1
