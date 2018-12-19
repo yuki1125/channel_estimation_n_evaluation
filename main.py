@@ -10,13 +10,6 @@ _kernelSize = 9
 _maxLum = 1
 boxNoise = [0.0, 0.2, 0.3, 0.4]
 
-
-f_mld = open('ber_mld.csv', 'w')
-f_zf = open('ber_zf.csv', 'w')
-writer_mld = csv.writer(f_mld, lineterminator='\n')
-writer_zf = csv.writer(f_zf, lineterminator='\n')
-ber_mld = []
-ber_zf = []
 print('Processing is about to begin')
 
 for i, _boxNoise in enumerate(boxNoise): 
@@ -38,10 +31,6 @@ for i, _boxNoise in enumerate(boxNoise):
     ber_zf.append(zf_ber_pro)
     ber_mld.append(mld_ber_pro)
 
-writer_mld.writerow(ber_mld)
-writer_zf.writerow(ber_zf)
-f_mld.close()
-f_zf.close()
 print('--'*15)
 print('Iteration:', _loop)
 print('Gauss_variance:', _gaussSigma)
@@ -50,4 +39,3 @@ print('--'*15)
 print('BER-ZF-pro:', zf_ber_pro)
 print('BER-ZF-conv:', zf_ber_conv)
 print('BER-MLD-pro:', mld_ber_pro)
-#print('BER-MLD-conv:', mld_ber_conv)
