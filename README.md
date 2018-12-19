@@ -7,4 +7,4 @@ Clone this repository on your computer with Python environment
 - main.py: main source of the simulation
 - data_creation.py: the file makes simulationaly created images
 - channel_estimation.py: the file estimates channel parameters from created images in data_creation.py
-- modulation_method.py: demodulate transmitted data using MLD/ZF
+- demodulation_method.py: demodulate transmitted data using MLD/ZF
