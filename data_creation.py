@@ -93,24 +93,17 @@ class MakeReceivedImg(object):
         """
         Aplly filtering to LED arrays created in RandomLEDs
         """
-
         channel, _ = self.GaussChannelAndInv()
-        #pixel_values = np.zeros(self.numberOfLEDs)
-
         pixel_values = np.dot(channel, leds)
-
-       # pixel_values = np.dot(invchannel, pixel_values)
-
-        return pixel_values     
-  
+        
+        return pixel_values    
+    
   
     def GetNoise(self):
         """
         Generate noise by boxmuller method
         """
-
         from scipy.stats import uniform
-
         # 独立した一様分布からそれぞれ一様乱数を生成
         np.random.seed()
         N = self.numberOfLEDs
