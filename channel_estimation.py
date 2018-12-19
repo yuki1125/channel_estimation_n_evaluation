@@ -32,7 +32,7 @@ def estimate_channel(led_pattern, pixel_value, offset=False):
 
 def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2, kernelSize=9, maxLum=1, offset=False):
     """
-    個別点灯画像の1000枚の平均を用いたチャネル推定
+    個別点灯画像のnumimages枚の平均を用いたチャネル推定
     """
     from data_creation import MakeReceivedImg
     mri = MakeReceivedImg(numleds, gaussSigma, kernelSize)
