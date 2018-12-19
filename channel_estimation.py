@@ -19,12 +19,13 @@ def estimate_channel(led_pattern, pixel_value, offset=False):
     estimated_channel = np.array([[0 for i in range(len_led)] for j in range(total_led)], dtype='float32')
     
     for idx_led in range(total_led):
-        # indx_led番目のLEDの点滅状態を格納
         tmp_led = []
+       
         for idx_loop in range(len_loop):
             tmp_led.append(pixel_value[idx_loop, idx_led])
-        # idx_led番目のLEDのチャネルを格納
+            
         tmp_channel = np.dot(inv_led, tmp_led)
+        
         for i in range(len_led):
             estimated_channel[idx_led, i] = tmp_channel[i]
             
@@ -37,10 +38,12 @@ def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2
     from data_creation import MakeReceivedImg
     mri = MakeReceivedImg(numleds, gaussSigma, kernelSize)
     estimated_channel = np.array([[0 for i in range(numleds)] for j in range(numleds)], dtype='float32')
+    
     for led in range(numleds):
         leds = np.zeros(numleds, dtype='int32')
         leds[led] = 1
         total_pix_val = [0]
+        
         for _ in range(numimages):
             pix = mri.Filtering(leds=leds)
             noise = mri.GetNoise()
