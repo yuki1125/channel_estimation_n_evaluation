@@ -8,12 +8,13 @@ _loop = 1
 _gaussSigma = 0.336
 _kernelSize = 9
 _maxLum = 1
+_num_led = 16
 boxNoise = [0.0, 0.2, 0.3, 0.4]
 
 print('Processing is about to begin')
 
 for i, _boxNoise in enumerate(boxNoise): 
-    mri = MakeReceivedImg(gaussSigma=_gaussSigma, boxNoise=_boxNoise, \
+    mri = MakeReceivedImg(numberOfLED=_num_led, gaussSigma=_gaussSigma, boxNoise=_boxNoise, \
                         kernelSize=_kernelSize, maxLum=_maxLum, offset=False)
     answer_signals, pixel_values = mri.create_dataset(loop=_loop)
 
