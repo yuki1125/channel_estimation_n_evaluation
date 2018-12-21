@@ -33,8 +33,11 @@ for i, _boxNoise in enumerate(boxNoise):
     replicas_with_conv = md.create_replica(ch_conv)
 
     print('now processing....:', i, '/', len(boxNoise))
+    # - zf_ber_pro: ch_proを用いたZF
     zf_ber_pro = md.modulation_zf(pixel_values, answer_signals, ch_pro, loop=_loop, offset=False)
+    # - zf_ber_conv: ch_convを用いたZF
     zf_ber_conv = md.modulation_zf(pixel_values, answer_signals, ch_conv, loop=_loop)
+    # - mld_ber_pro: ch_proを用いたMLD
     mld_ber_pro = md.modulation_mld(pixel_values, answer_signals, ch_pro, replicas_with_pro, loop=_loop)
     #mld_ber_conv = md.modulation_mld(pixel_values, answer_signals, ch_conv, replicas_with_conv, loop=_loop)
     ber_zf.append(zf_ber_pro)
