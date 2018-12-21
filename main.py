@@ -15,7 +15,7 @@ print('Processing is about to begin')
 
 for i, _boxNoise in enumerate(boxNoise): 
     # 画像の作成
-    mri = MakeReceivedImg(numberOfLED=_num_led, gaussSigma=_gaussSigma, boxNoise=_boxNoise, \
+    mri = MakeReceivedImg(numberOfLEDs=_num_led, gaussSigma=_gaussSigma, boxNoise=_boxNoise, \
                         kernelSize=_kernelSize, maxLum=_maxLum, offset=False)
     # loop枚数分画像の作成
     # - answer_signals: 正解の点滅パターン
