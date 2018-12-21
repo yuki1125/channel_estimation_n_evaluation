@@ -11,10 +11,10 @@ def modulation_zf(pixelValue, answers, gauss, loop, offset=False):
     _, len_led = pixelValue.shape
     
     if offset:
-        offset_value = gauss[:, 16]
+        offset_value = gauss[:, len_led]
     
-    answers = answers[:, :16]
-    gauss = gauss[:, :16]
+    answers = answers[:, :len_led]
+    gauss = gauss[:, :len_led]
     inv_gauss = np.linalg.pinv(gauss)
 
     error = 0

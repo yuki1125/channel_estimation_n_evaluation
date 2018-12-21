@@ -36,7 +36,7 @@ def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2
     個別点灯画像のnumimages枚の平均を用いたチャネル推定
     """
     from data_creation import MakeReceivedImg
-    mri = MakeReceivedImg(numleds, gaussSigma, kernelSize)
+    mri = MakeReceivedImg(numleds, boxNoise, gaussSigma, kernelSize)
     estimated_channel = np.array([[0 for i in range(numleds)] for j in range(numleds)], dtype='float32')
     
     for led in range(numleds):
@@ -56,6 +56,6 @@ def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2
             total_pix_val += pix_val / numimages
         
         for i in range(numleds):
-            estimated_channel[led][i] = total_pix_val[i]
+            estimated_channel[led, i] = total_pix_val[i]
     
     return estimated_channel

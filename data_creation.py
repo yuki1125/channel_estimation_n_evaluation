@@ -38,7 +38,7 @@ class MakeReceivedImg(object):
 
         # [sqrt(len(blinking_leds)]
         led_len = math.sqrt(len(blinking_leds))
-        assert led_len % 2 == 0, 'Expected: 0 == led_len%2 \n Actual: 1 == led_len%2'
+        #assert led_len % 2 == 0, 'Expected: 0 == led_len%2 \n Actual: 1 == led_len%2'
 
         # change dtype float to int
         led_len = int(led_len)
