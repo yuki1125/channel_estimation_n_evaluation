@@ -2,7 +2,7 @@ import numpy as np
 import math
 
 class MakeReceivedImg(object):
-    def __init__(self, numberOfLEDs=16, gaussSigma=0.45, kernelSize=9, maxLum=1, minLum=0, boxNoise=0.3, offset=False):
+    def __init__(self, numberOfLEDs=16, gaussSigma=0.45, kernelSize=5, maxLum=1, minLum=0, boxNoise=0.3, offset=False):
         """
         Initial functions of this class
         """
@@ -61,6 +61,7 @@ class MakeReceivedImg(object):
         gauss_channel = [[0 for i in range(y_scale * x_scale)] for j in range(y_scale * x_scale)]
 
         # 自身と他の画素から影響を受ける画素の決定
+        
         for y in range(0, y_scale):
             for x in range(0, x_scale):
                 target_pixel = y * x_scale + x  
@@ -133,6 +134,8 @@ class MakeReceivedImg(object):
             leds = np.append(leds, 1)
         else:
             receivedimg = pix + noise
+        
+        receivedimg = np.where(receivedimg < 0, 0, receivedimg)
             
         return receivedimg, leds
     

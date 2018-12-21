@@ -24,19 +24,20 @@ def estimate_channel(led_pattern, pixel_value, offset=False):
         for idx_loop in range(len_loop):
             tmp_led.append(pixel_value[idx_loop, idx_led])
             
+        # tmp_channel(len_led, 1)の配列
         tmp_channel = np.dot(inv_led, tmp_led)
         
         for i in range(len_led):
             estimated_channel[idx_led, i] = tmp_channel[i]
-            
-    return np.array(estimated_channel, dtype='float32')
+
+    return estimated_channel
 
 def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2, kernelSize=9, maxLum=1, offset=False):
     """
     個別点灯画像のnumimages枚の平均を用いたチャネル推定
     """
     from data_creation import MakeReceivedImg
-    mri = MakeReceivedImg(numleds, boxNoise, gaussSigma, kernelSize)
+    mri_est = MakeReceivedImg(numberOfLEDs=numleds, boxNoise=boxNoise, gaussSigma=gaussSigma, kernelSize=kernelSize)
     estimated_channel = np.array([[0 for i in range(numleds)] for j in range(numleds)], dtype='float32')
     
     for led in range(numleds):
@@ -45,8 +46,8 @@ def estimate_channel_conv(numleds=16, numimages=50, gaussSigma=0.4, boxNoise=0.2
         total_pix_val = [0]
         
         for _ in range(numimages):
-            pix = mri.Filtering(leds=leds)
-            noise = mri.GetNoise()
+            pix = mri_est.Filtering(leds=leds)
+            noise = mri_est.GetNoise()
             
             if offset: # Offsetで全体画素値を底上げ
                 pix_val = pix + noise + 10*0.01
