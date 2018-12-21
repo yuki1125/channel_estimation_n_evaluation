@@ -28,7 +28,7 @@ for i, _boxNoise in enumerate(boxNoise):
     ch_conv = chest.estimate_channel_conv(gaussSigma=_gaussSigma, kernelSize=_kernelSize)
 
     # - replicas_with_pro: ch_proを用いたレプリカ画像作成
-    replicas_with_pro = md.create_replica(numleds=_num_led, ch_pro)
+    replicas_with_pro = md.create_replica(ch_pro)
     # - replicas_with_conv: ch_convを用いたレプリカ画像作成
     replicas_with_conv = md.create_replica(ch_conv)
 
