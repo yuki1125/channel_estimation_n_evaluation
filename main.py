@@ -40,8 +40,7 @@ for i, _boxNoise in enumerate(boxNoise):
     # - mld_ber_pro: ch_proを用いたMLD
     mld_ber_pro = md.modulation_mld(pixel_values, answer_signals, ch_pro, replicas_with_pro, loop=_loop)
     #mld_ber_conv = md.modulation_mld(pixel_values, answer_signals, ch_conv, replicas_with_conv, loop=_loop)
-    ber_zf.append(zf_ber_pro)
-    ber_mld.append(mld_ber_pro)
+
 
 print('--'*15)
 print('Iteration:', _loop)
