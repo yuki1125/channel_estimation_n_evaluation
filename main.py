@@ -25,7 +25,8 @@ for i, _boxNoise in enumerate(boxNoise):
     # - ch_pro: 擬似逆行列を用いたチャネル推定
     ch_pro = chest.estimate_channel(answer_signals, pixel_values, offset=False)
     # - ch_conv: 単独点滅画像を用いたチャネル推定
-    ch_conv = chest.estimate_channel_conv(numleds=_num_led, numimages=100, gaussSigma=_gaussSigma, boxNoise=_boxNoise, kernelSize=_kernelSize)
+    ch_conv = chest.estimate_channel_conv(numleds=_num_led, numimages=100, gaussSigma=_gaussSigma, \
+                                          boxNoise=_boxNoise, kernelSize=_kernelSize)
 
     # - replicas_with_pro: ch_proを用いたレプリカ画像作成
     replicas_with_pro = md.create_replica(ch_pro)
